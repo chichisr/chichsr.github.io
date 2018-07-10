@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>JS + CSS Clock</title>
+        <style>
+            html {
+                background-image: linear-gradient(#f9f1db, #fffdf9);
+                background-size:cover;
+                font-family:'helvetica neue';
+                text-align: center;
+                font-size: 10px;
+            }
+
+            body {
+                margin: 0;
+                font-size: 2rem;
+                display:flex;
+                flex:1;
+                flex-direction: column;
+                min-height: 100vh;
+                align-items: center;
+            }
+
+            .toggle {
+                margin-top: 40px;
+                position: relative;
+                width: 80px;
+                height: 34px;
+            }
+            .toggle input {
+                display: none;
+            }
+            .toggle .slider {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                box-shadow: inset 1px 1px 8px rgba(0, 0, 0, 0.4);
+                border-radius: 34px;
+                cursor: pointer;
+            }
+            .toggle .slider:before,
+            .toggle .slider::before {
+                position: absolute;
+                left: 4px;
+                top: 4px;
+                content: '';
+                height: 26px;
+                width: 26px;
+                transition: 250ms;
+                border-radius: 50%;
+                background-color: #490172;
+            }
+
+            .toggle input:checked + .slider:before,
+            .toggle input:checked + .slider::before {
+                transform: translateX(46px);
+                background-color: #edde02;
+            }
+
+            .clock {
+                width: 30rem;
+                height: 30rem;
+                border: 15px solid #edde02;
+                border-radius:50%;
+                margin:15px auto;
+                position: relative;
+                padding:2rem;
+                background-image: repeating-radial-gradient(
+                    circle at center,
+                    #fffeef,
+                    #edde02 8px,
+                    #fcfcfc,
+                    #2d2d2d 40px
+                );
+                box-shadow: 0 0 15px 4px rgba(45, 45, 45, 0.3);
+            }
+
+            .clock-face {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                transform: translateY(-3px); /* account for the height of the clock hands */
+            }
+
+            .hand {
+                margin-left: -3px;
+                position: absolute;
+                left: 50%;
+                width: 6px;
+                height: 50%;
+                background: black;
+                transform-origin: 3px 100%;
+                background: linear-gradient(#490172, #8c0583);
+            }
+
+            .hour-hand {
+                margin-top: 15%;
+                margin-left: -4px;
+                width: 8px;
+                height: 35%;
+                transform-origin: 4px 100%;
+            }
+
+            .second-hand {
+                margin-left: -2px;
+                width: 4px;
+                transform-origin: 2px 100%;
+                background: linear-gradient(#f7d9f5 15%, #8c0583 70%);
+            }
+            .second-hand:after,
+            .second-hand::after {
+                position: absolute;
+                left: -8px;
+                bottom: -8px;
+                width: 18px;
+                height: 18px;
+                content: '';
+                background-color: #8c0583;
+                border-radius: 50%;
+            }
+
+            .marker {
+                margin-left: -2px;
+                position: absolute;
+                top: 0;
+                left: 50%;
+                width: 4px;
+                height: 100%;
+            }
+
+            .marker:before,
+            .marker::before,
+            .marker:after,
+            .marker::after {
+                position: absolute;
+                left: 0;
+                content: '';
+                width: 100%;
+                height: 15px;
+                box-shadow: inset 2px 0 4px rgba(0, 0, 0, 0.5);
+            }
+            .marker:before,
+            .marker::before {
+                top: -15px;
+            }
+            .marker:after,
+            .marker::after {
+                bottom: -15px;
+            }
+
+            .marker:nth-child(2) {
+                transform: rotate(30deg);
+            }
+            .marker:nth-child(3) {
+                transform: rotate(60deg);
+            }
+            .marker:nth-child(4) {
+                transform: rotate(90deg);
+            }
+            .marker:nth-child(5) {
+                transform: rotate(120deg);
+            }
+            .marker:nth-child(6) {
+                transform: rotate(150deg);
+            }
+        </style>
+    </head>
+    <body>
+        <label class="toggle">
+            <input type="checkbox" />
+            <span class="slider"></span>
+        </label>
+        <div class="clock">
+            <div class="clock-face">
+                <div class="hand hour-hand"></div>
+                <div class="hand min-hand"></div>
+                <div class="hand second-hand"></div>
+            </div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+            <div class="marker"></div>
+        </div>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>
